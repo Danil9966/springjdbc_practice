@@ -17,5 +17,5 @@ public interface Person {
 
     boolean isBroke();
 
-    List<Contact> getContacts();
+    List<String> getContacts();
 }

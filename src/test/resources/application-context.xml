@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <aop:aspectj-autoproxy />
+    <context:annotation-config/>
+    <!-- lab4 beans-->
+
+    <bean class="lab.model.simple.UsualPerson" id="person">
+        <property name="firstName" value="John"/>
+        <property name="lastName" value="Smith"/>
+        <property name="age" value="35"/>
+        <property name="Programmer" value="true"/>
+        <property name="height" value="1.78"/>
+        <property name="broke" value="false"/>
+        <property name="country" ref="country"/>
+        <property name="contacts">
+            <list>
+                <value>asd@asd.ru</value>
+                <value>+55 11 99999-5555</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="country" class="lab.model.simple.SimpleCountry">
+        <property name="name" value="Russia"/>
+        <property name="codeName" value="RU"/>
+    </bean>
+
+    <!-- lab5 beans-->
+    <bean id="bar" class="lab.model.ApuBar" />
+
+    <bean id="customer" class="lab.model.Customer">
+        <property name="name" value="Homer" />
+        <property name="broke" value="false" />
+    </bean>
+
+    <bean id="politeness" class="lab.aop.Politeness" />
+
+
+</beans>
