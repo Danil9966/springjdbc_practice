@@ -42,8 +42,7 @@ dependencies {
             'org.springframework:spring-core:+',
             'org.aspectj:aspectjrt:+',
             'org.aspectj:aspectjweaver:+',
-
-            // todo: insert additional dependencies here
+            'org.hsqldb:hsqldb:+'
 
     // Commons
             'org.apache.logging.log4j:log4j-slf4j-impl:+'

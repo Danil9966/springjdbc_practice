@@ -1,42 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
-       xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-    <aop:aspectj-autoproxy />
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:annotation-config/>
-    <!-- lab4 beans-->
 
-    <bean class="lab.model.simple.UsualPerson" id="person"
-          p:firstName="John"
-          p:lastName="Smith"
-          p:age="35"
-          p:Programmer="true"
-          p:height="1.78"
-          p:broke="false">
-        <property name="contacts">
-            <list>
-                <value>asd@asd.ru</value>
-                <value>+55 11 99999-5555</value>
-            </list>
-        </property>
+    <jdbc:embedded-database id="dataSource">
+        <jdbc:script location="classpath:db-schema.sql"/>
+    </jdbc:embedded-database>
+
+    <!--
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+            <property name="url" value="jdbc:hsqldb:mem:test"/>
+            <property name="username" value="sa"/>
+            <property name="password" value=""/>
+        </bean>
+     -->
+
+    <bean id="countryDao" class="lab.dao.CountryDao">
+        <property name="dataSource" ref="dataSource"/>
     </bean>
-
-    <bean id="country" class="lab.model.simple.SimpleCountry"
-          p:name="Russia"
-          p:codeName="RU"/>
-
-    <!-- lab5 beans-->
-    <bean id="bar" class="lab.model.ApuBar" />
-
-    <bean id="customer" class="lab.model.Customer"
-          p:name="Homer"
-          p:broke="true"/>
-
-    <bean id="politeness" class="lab.aop.Politeness" />
-
-
 </beans>
