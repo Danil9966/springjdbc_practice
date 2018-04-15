@@ -24,7 +24,7 @@ public class AopAspectJTest {
 
     @Before
     public void setUp() throws Exception {
-    	
+        customer.setBroke(false);
         bar.sellSquishee(customer);
     }
 
