@@ -1,3 +1,3 @@
-# spring_practice
+# springjdbc_practice
 разбираюсь чё-почём
-Содержит 4 и 5 задание
+Содержит 6 задание
